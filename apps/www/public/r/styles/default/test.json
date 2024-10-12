@@ -1,0 +1,12 @@
+{
+  "name": "test",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "ui/test.tsx",
+      "content": "import React from \"react\"\n\nfunction Test() {\n  return <div>test</div>\n}\n\nexport { Test }\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

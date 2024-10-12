@@ -456,6 +456,17 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "test": {
+      name: "test",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["registry/new-york/ui/test.tsx"],
+      component: React.lazy(() => import("@/registry/new-york/ui/test.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "textarea": {
       name: "textarea",
       type: "registry:ui",
@@ -1903,6 +1914,17 @@ export const Index: Record<string, any> = {
       registryDependencies: ["tooltip"],
       files: ["registry/new-york/example/tooltip-demo.tsx"],
       component: React.lazy(() => import("@/registry/new-york/example/tooltip-demo.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "test": {
+      name: "test",
+      type: "registry:example",
+      registryDependencies: ["test"],
+      files: ["registry/new-york/example/test.tsx"],
+      component: React.lazy(() => import("@/registry/new-york/example/test.tsx")),
       source: "",
       category: "undefined",
       subcategory: "undefined",
@@ -3812,6 +3834,17 @@ export const Index: Record<string, any> = {
       subcategory: "undefined",
       chunks: []
     },
+    "test": {
+      name: "test",
+      type: "registry:ui",
+      registryDependencies: undefined,
+      files: ["registry/default/ui/test.tsx"],
+      component: React.lazy(() => import("@/registry/default/ui/test.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
     "textarea": {
       name: "textarea",
       type: "registry:ui",
@@ -5259,6 +5292,17 @@ export const Index: Record<string, any> = {
       registryDependencies: ["tooltip"],
       files: ["registry/default/example/tooltip-demo.tsx"],
       component: React.lazy(() => import("@/registry/default/example/tooltip-demo.tsx")),
+      source: "",
+      category: "undefined",
+      subcategory: "undefined",
+      chunks: []
+    },
+    "test": {
+      name: "test",
+      type: "registry:example",
+      registryDependencies: ["test"],
+      files: ["registry/default/example/test.tsx"],
+      component: React.lazy(() => import("@/registry/default/example/test.tsx")),
       source: "",
       category: "undefined",
       subcategory: "undefined",

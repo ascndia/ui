@@ -276,6 +276,11 @@ export const ui: Registry = [
     files: ["ui/tabs.tsx"],
   },
   {
+    name: "test",
+    type: "registry:ui",
+    files: ["ui/test.tsx"],
+  },
+  {
     name: "textarea",
     type: "registry:ui",
     files: ["ui/textarea.tsx"],
