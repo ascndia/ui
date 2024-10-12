@@ -52,7 +52,6 @@ export function BlockChunk({
                     name: chunk.name,
                     description: chunk.description || "",
                     code: chunk.code,
-                    style: block.style,
                   }}
                 />
               </div>

@@ -7,7 +7,6 @@ import { absoluteUrl, cn } from "@/lib/utils"
 import { BlockChunk } from "@/components/block-chunk"
 import { BlockWrapper } from "@/components/block-wrapper"
 import { ThemesStyle } from "@/components/themes-styles"
-import { Style, styles } from "@/registry/registry-styles"
 
 import "@/styles/mdx.css"
 
@@ -15,12 +14,11 @@ export async function generateMetadata({
   params,
 }: {
   params: {
-    style: Style["name"]
     name: string
   }
 }): Promise<Metadata> {
-  const { name, style } = params
-  const block = await getBlock(name, style)
+  const { name } = params
+  const block = await getBlock(name)
 
   if (!block) {
     return {}
@@ -53,28 +51,15 @@ export async function generateMetadata({
   }
 }
 
-export async function generateStaticParams() {
-  const blockIds = await getAllBlockIds()
-  return styles
-    .map((style) =>
-      blockIds.map((name) => ({
-        style: style.name,
-        name,
-      }))
-    )
-    .flat()
-}
-
 export default async function BlockPage({
   params,
 }: {
   params: {
-    style: Style["name"]
     name: string
   }
 }) {
-  const { name, style } = params
-  const block = await getBlock(name, style)
+  const { name } = params
+  const block = await getBlock(name)
 
   if (!block) {
     return notFound()

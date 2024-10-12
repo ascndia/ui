@@ -87,7 +87,6 @@ ${Object.entries(themesConfig?.activeTheme.cssVars.dark || {})
                   name: chart.name,
                   description: chart.description || "Edit in v0",
                   code: chart.code,
-                  style: "default",
                 }}
                 className="h-7"
               />
