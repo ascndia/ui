@@ -2,10 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
-    "style": {
-      "type": "string",
-      "enum": ["default", "new-york"]
-    },
     "tailwind": {
       "type": "object",
       "properties": {
@@ -55,5 +51,5 @@
       "required": ["utils", "components"]
     }
   },
-  "required": ["style", "tailwind", "rsc", "aliases"]
+  "required": ["tailwind", "rsc", "aliases"]
 }
