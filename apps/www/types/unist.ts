@@ -12,8 +12,8 @@ export interface UnistNode extends Node {
     [key: string]: unknown
   } & NpmCommands
   attributes?: {
-    name: string
-    value: unknown
+    name?: string
+    value?: unknown
     type?: string
   }[]
   children?: UnistNode[]

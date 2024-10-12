@@ -10,7 +10,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header"
-import { Button, buttonVariants } from "@/registry/new-york/ui/button"
+import { Button, buttonVariants } from "@/registry/ui/button"
 
 export const metadata: Metadata = {
   title: "Examples",

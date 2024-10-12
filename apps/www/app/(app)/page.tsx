@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
@@ -10,7 +9,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header"
-import { Button } from "@/registry/new-york/ui/button"
+import { Button } from "@/registry/ui/button"
 import MailPage from "@/app/(app)/examples/mail/page"
 
 export default function IndexPage() {
@@ -39,22 +38,7 @@ export default function IndexPage() {
         </PageActions>
       </PageHeader>
       <ExamplesNav className="[&>a:first-child]:text-primary" />
-      <section className="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl">
-        <Image
-          src="/examples/mail-dark.png"
-          width={1280}
-          height={727}
-          alt="Mail"
-          className="hidden dark:block"
-        />
-        <Image
-          src="/examples/mail-light.png"
-          width={1280}
-          height={727}
-          alt="Mail"
-          className="block dark:hidden"
-        />
-      </section>
+      <section className="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl"></section>
       <section className="hidden md:block">
         <div className="overflow-hidden rounded-lg border bg-background shadow">
           <MailPage />

@@ -8,29 +8,21 @@ import { Project, ScriptKind, SourceFile, SyntaxKind } from "ts-morph"
 import { z } from "zod"
 
 import { highlightCode } from "@/lib/highlight-code"
-import { Style } from "@/registry/registry-styles"
 import { BlockChunk, blockSchema, registryEntrySchema } from "@/registry/schema"
-
-const DEFAULT_BLOCKS_STYLE = "default" satisfies Style["name"]
 
 const project = new Project({
   compilerOptions: {},
 })
 
-export async function getAllBlockIds(
-  style: Style["name"] = DEFAULT_BLOCKS_STYLE
-) {
-  const blocks = await _getAllBlocks(style)
+export async function getAllBlockIds() {
+  const blocks = await _getAllBlocks()
   return blocks.map((block) => block.name)
 }
 
-export async function getBlock(
-  name: string,
-  style: Style["name"] = DEFAULT_BLOCKS_STYLE
-) {
-  const entry = Index[style][name]
+export async function getBlock(name: string) {
+  const entry = Index[name]
 
-  const content = await _getBlockContent(name, style)
+  const content = await _getBlockContent(name)
 
   const chunks = await Promise.all(
     entry.chunks?.map(async (chunk: BlockChunk) => {
@@ -55,15 +47,12 @@ export async function getBlock(
 
       return {
         ...chunk,
-        code: sourceFile
-          .getText()
-          .replaceAll(`@/registry/${style}/`, "@/components/"),
+        code: sourceFile.getText().replaceAll(`@/registry/`, "@/components/"),
       }
     })
   )
 
   return blockSchema.parse({
-    style,
     highlightedCode: content.code ? await highlightCode(content.code) : "",
     ...entry,
     ...content,
@@ -72,19 +61,16 @@ export async function getBlock(
   })
 }
 
-async function _getAllBlocks(style: Style["name"] = DEFAULT_BLOCKS_STYLE) {
-  const index = z.record(registryEntrySchema).parse(Index[style])
+async function _getAllBlocks() {
+  const index = z.record(registryEntrySchema)
 
   return Object.values(index).filter((block) => block.type === "registry:block")
 }
 
-async function _getBlockCode(
-  name: string,
-  style: Style["name"] = DEFAULT_BLOCKS_STYLE
-) {
-  const entry = Index[style][name]
+async function _getBlockCode(name: string) {
+  const entry = Index[name]
   if (!entry) {
-    console.error(`Block ${name} not found in style ${style}`)
+    console.error(`Block ${name} not found`)
     return ""
   }
   const block = registryEntrySchema.parse(entry)
@@ -106,8 +92,8 @@ async function createTempSourceFile(filename: string) {
   return path.join(dir, filename)
 }
 
-async function _getBlockContent(name: string, style: Style["name"]) {
-  const raw = await _getBlockCode(name, style)
+async function _getBlockContent(name: string) {
+  const raw = await _getBlockCode(name)
 
   const tempFile = await createTempSourceFile(`${name}.tsx`)
   const sourceFile = project.createSourceFile(tempFile, raw, {
@@ -120,7 +106,7 @@ async function _getBlockContent(name: string, style: Style["name"]) {
 
   // Format the code.
   let code = sourceFile.getText()
-  code = code.replaceAll(`@/registry/${style}/`, "@/components/")
+  code = code.replaceAll(`@/registry/`, "@/components/")
   code = code.replaceAll("export default", "export")
 
   return {

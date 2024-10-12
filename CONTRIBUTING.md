@@ -1,10 +1,10 @@
 # Contributing
 
-Thanks for your interest in contributing to ui.shadcn.com. We're happy to have you here.
+Thanks for your interest in contributing to ui.ascndia.com. We're happy to have you here.
 
 Please take a moment to review this document before submitting your first pull request. We also strongly recommend that you check for open issues and pull requests to see if someone else is working on something similar.
 
-If you need any help, feel free to reach out to [@shadcn](https://twitter.com/shadcn).
+If you need any help, feel free to reach out to [@ascndia](https://twitter.com/ascndia).
 
 ## About this repository
 
@@ -25,12 +25,7 @@ apps
     ├── components
     ├── content
     └── registry
-        ├── default
-        │   ├── example
-        │   └── ui
-        └── new-york
-            ├── example
-            └── ui
+        ├── registry
 packages
 └── cli
 ```
@@ -41,7 +36,7 @@ packages
 | `apps/www/components` | The React components for the website.    |
 | `apps/www/content`    | The content for the website.             |
 | `apps/www/registry`   | The registry for the components.         |
-| `packages/cli`        | The `shadcn-ui` package.                 |
+| `packages/cli`        | The `ascndia` package.                   |
 
 ## Development
 
@@ -79,16 +74,16 @@ You can use the `pnpm --filter=[WORKSPACE]` command to start the development pro
 
 #### Examples
 
-1. To run the `ui.shadcn.com` website:
+1. To run the `ui.ascndia.com` website:
 
 ```bash
 pnpm --filter=www dev
 ```
 
-2. To run the `shadcn-ui` package:
+2. To run the `ascndia` package:
 
 ```bash
-pnpm --filter=shadcn-ui dev
+pnpm --filter=ascndia dev
 ```
 
 ## Documentation
@@ -160,7 +155,7 @@ If you have a request for a new component, please open a discussion on GitHub. W
 
 ## CLI
 
-The `shadcn-ui` package is a CLI for adding components to your project. You can find the documentation for the CLI [here](https://ui.shadcn.com/docs/cli).
+The `ascndia` package is a CLI for adding components to your project. You can find the documentation for the CLI [here](https://ui.ascndia.com/docs/cli).
 
 Any changes to the CLI should be made in the `packages/cli` directory. If you can, it would be great if you could add tests for your changes.
 

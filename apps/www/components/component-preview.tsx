@@ -4,19 +4,11 @@ import * as React from "react"
 import { Index } from "@/__registry__"
 
 import { cn } from "@/lib/utils"
-import { useConfig } from "@/hooks/use-config"
 import { CopyButton } from "@/components/copy-button"
 import { Icons } from "@/components/icons"
-import { StyleSwitcher } from "@/components/style-switcher"
 import { ThemeWrapper } from "@/components/theme-wrapper"
 import { V0Button } from "@/components/v0-button"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/registry/new-york/ui/tabs"
-import { styles } from "@/registry/registry-styles"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string
@@ -38,14 +30,13 @@ export function ComponentPreview({
   hideCode = false,
   ...props
 }: ComponentPreviewProps) {
-  const [config] = useConfig()
-  const index = styles.findIndex((style) => style.name === config.style)
+  const index = 0
 
   const Codes = React.Children.toArray(children) as React.ReactElement[]
   const Code = Codes[index]
 
   const Preview = React.useMemo(() => {
-    const Component = Index[config.style][name]?.component
+    const Component = Index[name]?.component
 
     if (!Component) {
       return (
@@ -60,7 +51,7 @@ export function ComponentPreview({
     }
 
     return <Component />
-  }, [name, config.style])
+  }, [name])
 
   const codeString = React.useMemo(() => {
     if (
@@ -99,18 +90,14 @@ export function ComponentPreview({
         </div>
         <TabsContent value="preview" className="relative rounded-md border">
           <div className="flex items-center justify-between p-4">
-            <StyleSwitcher />
             <div className="flex items-center gap-2">
-              {config.style === "default" && description ? (
-                <V0Button
-                  block={{
-                    code: codeString,
-                    name,
-                    style: config.style,
-                    description,
-                  }}
-                />
-              ) : null}
+              <V0Button
+                block={{
+                  code: codeString,
+                  name,
+                  description,
+                }}
+              />
               <CopyButton
                 value={codeString}
                 variant="outline"

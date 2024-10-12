@@ -1,20 +1,15 @@
 import { Metadata } from "next"
 import Image from "next/image"
 
-import { Button } from "@/registry/new-york/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/registry/new-york/ui/card"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/registry/new-york/ui/tabs"
+} from "@/registry/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { CalendarDateRangePicker } from "@/app/(app)/examples/dashboard/components/date-range-picker"
 import { MainNav } from "@/app/(app)/examples/dashboard/components/main-nav"
 import { Overview } from "@/app/(app)/examples/dashboard/components/overview"

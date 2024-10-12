@@ -8,9 +8,7 @@ import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/providers"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeSwitcher } from "@/components/theme-switcher"
-import { Toaster as DefaultToaster } from "@/registry/default/ui/toaster"
-import { Toaster as NewYorkSonner } from "@/registry/new-york/ui/sonner"
-import { Toaster as NewYorkToaster } from "@/registry/new-york/ui/toaster"
+import { Toaster as DefaultToaster } from "@/registry/ui/toaster"
 
 export const metadata: Metadata = {
   title: {
@@ -28,11 +26,11 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "shadcn",
-      url: "https://shadcn.com",
+      name: "ascndia",
+      url: "https://ascndia.com",
     },
   ],
-  creator: "shadcn",
+  creator: "ascndia",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -54,7 +52,7 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: "@shadcn",
+    creator: "@ascndia",
   },
   icons: {
     icon: "/favicon.ico",
@@ -100,9 +98,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <TailwindIndicator />
             <ThemeSwitcher />
             <Analytics />
-            <NewYorkToaster />
             <DefaultToaster />
-            <NewYorkSonner />
           </ThemeProvider>
         </body>
       </html>

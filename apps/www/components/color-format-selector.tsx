@@ -11,8 +11,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select"
-import { Skeleton } from "@/registry/new-york/ui/skeleton"
+} from "@/registry/ui/select"
+import { Skeleton } from "@/registry/ui/skeleton"
 
 export function ColorFormatSelector({
   color,

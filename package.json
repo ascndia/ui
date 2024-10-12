@@ -5,8 +5,8 @@
   "license": "MIT",
   "type": "module",
   "author": {
-    "name": "shadcn",
-    "url": "https://twitter.com/shadcn"
+    "name": "ascndia",
+    "url": "https://twitter.com/ascndia"
   },
   "workspaces": [
     "apps/*",
@@ -15,17 +15,17 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "build:cli": "turbo --filter=shadcn build",
+    "build:cli": "turbo --filter=ascndia build",
     "build:registry": "pnpm --filter=www build:registry && pnpm format:write -- --loglevel silent",
     "registry:build": "pnpm --filter=www build:registry && pnpm format:write -- --loglevel silent",
     "dev": "turbo run dev --parallel",
-    "cli:dev": "turbo --filter=shadcn-ui dev",
-    "cli:start": "pnpm --filter=shadcn-ui start:dev",
-    "cli:build": "pnpm --filter=shadcn-ui build",
-    "shadcn:dev": "turbo --filter=shadcn dev",
-    "shadcn": "pnpm --filter=shadcn start:dev",
-    "shadcn:build": "pnpm --filter=shadcn build",
-    "shadcn:test": "pnpm --filter=shadcn test",
+    "cli:dev": "turbo --filter=ascndia dev",
+    "cli:start": "pnpm --filter=ascndia start:dev",
+    "cli:build": "pnpm --filter=ascndia build",
+    "ascndia:dev": "turbo --filter=ascndia dev",
+    "ascndia": "pnpm --filter=ascndia start:dev",
+    "ascndia:build": "pnpm --filter=ascndia build",
+    "ascndia:test": "pnpm --filter=ascndia test",
     "docs:build": "pnpm --filter=www build:docs",
     "www:dev": "pnpm --filter=www dev",
     "www:build": "pnpm --filter=www build",
@@ -38,8 +38,8 @@
     "sync:templates": "./scripts/sync-templates.sh \"templates/*\"",
     "check": "turbo lint typecheck format:check",
     "release": "changeset version",
-    "pub:beta": "cd packages/shadcn && pnpm pub:beta",
-    "pub:release": "cd packages/shadcn && pnpm pub:release",
+    "pub:beta": "cd packages/ascndia && pnpm pub:beta",
+    "pub:release": "cd packages/ascndia && pnpm pub:release",
     "test": "turbo run test --force"
   },
   "packageManager": "pnpm@9.0.6",

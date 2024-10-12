@@ -2,15 +2,10 @@ import { Metadata } from "next"
 import Image from "next/image"
 import { PlusCircledIcon } from "@radix-ui/react-icons"
 
-import { Button } from "@/registry/new-york/ui/button"
-import { ScrollArea, ScrollBar } from "@/registry/new-york/ui/scroll-area"
-import { Separator } from "@/registry/new-york/ui/separator"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/registry/new-york/ui/tabs"
+import { Button } from "@/registry/ui/button"
+import { ScrollArea, ScrollBar } from "@/registry/ui/scroll-area"
+import { Separator } from "@/registry/ui/separator"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 import { AlbumArtwork } from "./components/album-artwork"
 import { Menu } from "./components/menu"
@@ -27,23 +22,7 @@ export const metadata: Metadata = {
 export default function MusicPage() {
   return (
     <>
-      <div className="md:hidden">
-        <Image
-          src="/examples/music-light.png"
-          width={1280}
-          height={1114}
-          alt="Music"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/music-dark.png"
-          width={1280}
-          height={1114}
-          alt="Music"
-          className="hidden dark:block"
-        />
-      </div>
-      <div className="hidden md:block">
+      <div className="block">
         <Menu />
         <div className="border-t">
           <div className="bg-background">

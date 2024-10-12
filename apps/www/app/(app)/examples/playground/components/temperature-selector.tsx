@@ -7,9 +7,9 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/registry/new-york/ui/hover-card"
-import { Label } from "@/registry/new-york/ui/label"
-import { Slider } from "@/registry/new-york/ui/slider"
+} from "@/registry/ui/hover-card"
+import { Label } from "@/registry/ui/label"
+import { Slider } from "@/registry/ui/slider"
 
 interface TemperatureSelectorProps {
   defaultValue: SliderProps["defaultValue"]

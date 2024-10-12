@@ -7,7 +7,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header"
-import { Button } from "@/registry/new-york/ui/button"
+import { Button } from "@/registry/ui/button"
 
 export const metadata: Metadata = {
   title: "Building Blocks.",
@@ -34,7 +34,7 @@ export default function BlocksLayout({
           </Button>
           <Button asChild variant="ghost" size="sm">
             <a
-              href="https://github.com/shadcn-ui/ui/discussions/new?category=blocks-request"
+              href="https://github.com/ascndia/ui/discussions/new?category=blocks-request"
               target="_blank"
             >
               Request a block

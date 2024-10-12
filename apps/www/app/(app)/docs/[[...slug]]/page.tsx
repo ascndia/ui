@@ -14,8 +14,8 @@ import { Mdx } from "@/components/mdx-components"
 import { OpenInV0Cta } from "@/components/open-in-v0-cta"
 import { DocsPager } from "@/components/pager"
 import { DashboardTableOfContents } from "@/components/toc"
-import { badgeVariants } from "@/registry/new-york/ui/badge"
-import { ScrollArea } from "@/registry/new-york/ui/scroll-area"
+import { badgeVariants } from "@/registry/ui/badge"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 interface DocPageProps {
   params: {
@@ -65,7 +65,7 @@ export async function generateMetadata({
       title: doc.title,
       description: doc.description,
       images: [siteConfig.ogImage],
-      creator: "@shadcn",
+      creator: "@ascndia",
     },
   }
 }

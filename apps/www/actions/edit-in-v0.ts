@@ -7,14 +7,12 @@ export async function editInV0({
   name,
   title,
   description,
-  style,
   code,
   url,
 }: {
   name: string
   title?: string
   description: string
-  style: string
   code: string
   url: string
 }) {
@@ -29,7 +27,6 @@ export async function editInV0({
       name,
       title,
       description,
-      style,
       url,
     })
 
@@ -42,7 +39,7 @@ export async function editInV0({
       description,
       code,
       source: {
-        title: "shadcn/ui",
+        title: "ascndia/ui",
         url,
       },
       meta: {

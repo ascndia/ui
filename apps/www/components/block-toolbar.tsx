@@ -8,23 +8,15 @@ import { trackEvent } from "@/lib/events"
 import { cn } from "@/lib/utils"
 import { useLiftMode } from "@/hooks/use-lift-mode"
 import { BlockCopyButton } from "@/components/block-copy-button"
-import { StyleSwitcher } from "@/components/style-switcher"
 import { V0Button } from "@/components/v0-button"
-import { Badge } from "@/registry/new-york/ui/badge"
-import { Label } from "@/registry/new-york/ui/label"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/registry/new-york/ui/popover"
-import { Separator } from "@/registry/new-york/ui/separator"
-import { Switch } from "@/registry/new-york/ui/switch"
-import { TabsList, TabsTrigger } from "@/registry/new-york/ui/tabs"
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/registry/new-york/ui/toggle-group"
 import { Block } from "@/registry/schema"
+import { Badge } from "@/registry/ui/badge"
+import { Label } from "@/registry/ui/label"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Separator } from "@/registry/ui/separator"
+import { Switch } from "@/registry/ui/switch"
+import { TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { ToggleGroup, ToggleGroupItem } from "@/registry/ui/toggle-group"
 
 export function BlockToolbar({
   block,
@@ -55,42 +47,6 @@ export function BlockToolbar({
           </TabsTrigger>
         </TabsList>
         <Separator orientation="vertical" className="mx-2 hidden h-4 md:flex" />
-        <StyleSwitcher
-          className="h-[calc(theme(spacing.7)_-_1px)] dark:h-7"
-          disabled={isLiftMode}
-        />
-        <Popover>
-          <PopoverTrigger
-            disabled={isLiftMode}
-            className="hidden text-muted-foreground hover:text-foreground disabled:opacity-50 sm:flex"
-          >
-            <CircleHelp className="h-3.5 w-3.5" />
-            <span className="sr-only">Block description</span>
-          </PopoverTrigger>
-          <PopoverContent
-            side="top"
-            sideOffset={20}
-            className="space-y-3 rounded-[0.5rem] text-sm"
-          >
-            <p className="font-medium">
-              What is the difference between the New York and Default style?
-            </p>
-            <p>
-              A style comes with its own set of components, animations, icons
-              and more.
-            </p>
-            <p>
-              The <span className="font-medium">Default</span> style has larger
-              inputs, uses lucide-react for icons and tailwindcss-animate for
-              animations.
-            </p>
-            <p>
-              The <span className="font-medium">New York</span> style ships with
-              smaller buttons and inputs. It also uses shadows on cards and
-              buttons.
-            </p>
-          </PopoverContent>
-        </Popover>
         <div className="hidden items-center gap-2 sm:flex">
           <Separator
             orientation="vertical"
@@ -191,7 +147,6 @@ export function BlockToolbar({
               name: block.name,
               description: block.description || "Edit in v0",
               code: block.code,
-              style: block.style,
             }}
           />
         </div>

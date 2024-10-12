@@ -5,7 +5,6 @@ import { u } from "unist-builder"
 import { visit } from "unist-util-visit"
 
 import { Index } from "../__registry__"
-import { styles } from "../registry/registry-styles"
 
 export function rehypeComponent() {
   return async (tree: UnistTree) => {
@@ -29,68 +28,61 @@ export function rehypeComponent() {
         }
 
         try {
-          for (const style of styles) {
-            let src: string
+          let src: string
 
-            if (srcPath) {
-              src = srcPath
-            } else {
-              const component = Index[style.name][name]
-              src = fileName
-                ? component.files.find((file: string) => {
-                    return (
-                      file.endsWith(`${fileName}.tsx`) ||
-                      file.endsWith(`${fileName}.ts`)
-                    )
-                  }) || component.files[0]
-                : component.files[0]
-            }
-
-            // Read the source file.
-            const filePath = path.join(process.cwd(), src)
-            let source = fs.readFileSync(filePath, "utf8")
-
-            // Replace imports.
-            // TODO: Use @swc/core and a visitor to replace this.
-            // For now a simple regex should do.
-            source = source.replaceAll(
-              `@/registry/${style.name}/`,
-              "@/components/"
-            )
-            source = source.replaceAll("export default", "export")
-
-            // Add code as children so that rehype can take over at build time.
-            node.children?.push(
-              u("element", {
-                tagName: "pre",
-                properties: {
-                  __src__: src,
-                  __style__: style.name,
-                },
-                attributes: [
-                  {
-                    name: "styleName",
-                    type: "mdxJsxAttribute",
-                    value: style.name,
-                  },
-                ],
-                children: [
-                  u("element", {
-                    tagName: "code",
-                    properties: {
-                      className: ["language-tsx"],
-                    },
-                    children: [
-                      {
-                        type: "text",
-                        value: source,
-                      },
-                    ],
-                  }),
-                ],
-              })
-            )
+          if (srcPath) {
+            src = srcPath
+          } else {
+            const component = Index[name]
+            src = fileName
+              ? component.files.find((file: string) => {
+                  return (
+                    file.endsWith(`${fileName}.tsx`) ||
+                    file.endsWith(`${fileName}.ts`)
+                  )
+                }) || component.files[0]
+              : component.files[0]
           }
+
+          // Read the source file.
+          const filePath = path.join(process.cwd(), src)
+          let source = fs.readFileSync(filePath, "utf8")
+
+          // Replace imports.
+          // TODO: Use @swc/core and a visitor to replace this.
+          // For now a simple regex should do.
+          source = source.replaceAll(`@/registry/`, "@/components/")
+          source = source.replaceAll("export default", "export")
+
+          // Add code as children so that rehype can take over at build time.
+          node.children?.push(
+            u("element", {
+              tagName: "pre",
+              properties: {
+                __src__: src,
+              },
+              attributes: [
+                {
+                  name: "styleName",
+                  type: "mdxJsxAttribute",
+                },
+              ],
+              children: [
+                u("element", {
+                  tagName: "code",
+                  properties: {
+                    className: ["language-tsx"],
+                  },
+                  children: [
+                    {
+                      type: "text",
+                      value: source,
+                    },
+                  ],
+                }),
+              ],
+            })
+          )
         } catch (error) {
           console.error(error)
         }
@@ -104,47 +96,42 @@ export function rehypeComponent() {
         }
 
         try {
-          for (const style of styles) {
-            const component = Index[style.name][name]
-            const src = component.files[0]
+          const component = Index[name]
+          const src = component.files[0]
 
-            // Read the source file.
-            const filePath = path.join(process.cwd(), src)
-            let source = fs.readFileSync(filePath, "utf8")
+          // Read the source file.
+          const filePath = path.join(process.cwd(), src)
+          let source = fs.readFileSync(filePath, "utf8")
 
-            // Replace imports.
-            // TODO: Use @swc/core and a visitor to replace this.
-            // For now a simple regex should do.
-            source = source.replaceAll(
-              `@/registry/${style.name}/`,
-              "@/components/"
-            )
-            source = source.replaceAll("export default", "export")
+          // Replace imports.
+          // TODO: Use @swc/core and a visitor to replace this.
+          // For now a simple regex should do.
+          source = source.replaceAll(`@/registry/`, "@/components/")
+          source = source.replaceAll("export default", "export")
 
-            // Add code as children so that rehype can take over at build time.
-            node.children?.push(
-              u("element", {
-                tagName: "pre",
-                properties: {
-                  __src__: src,
-                },
-                children: [
-                  u("element", {
-                    tagName: "code",
-                    properties: {
-                      className: ["language-tsx"],
+          // Add code as children so that rehype can take over at build time.
+          node.children?.push(
+            u("element", {
+              tagName: "pre",
+              properties: {
+                __src__: src,
+              },
+              children: [
+                u("element", {
+                  tagName: "code",
+                  properties: {
+                    className: ["language-tsx"],
+                  },
+                  children: [
+                    {
+                      type: "text",
+                      value: source,
                     },
-                    children: [
-                      {
-                        type: "text",
-                        value: source,
-                      },
-                    ],
-                  }),
-                ],
-              })
-            )
-          }
+                  ],
+                }),
+              ],
+            })
+          )
         } catch (error) {
           console.error(error)
         }
