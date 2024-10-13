@@ -5,7 +5,6 @@ import { cosmiconfig } from "cosmiconfig"
 import { loadConfig } from "tsconfig-paths"
 import { z } from "zod"
 
-export const DEFAULT_STYLE = "default"
 export const DEFAULT_COMPONENTS = "@/components"
 export const DEFAULT_UTILS = "@/lib/utils"
 export const DEFAULT_TAILWIND_CSS = "app/globals.css"

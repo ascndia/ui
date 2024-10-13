@@ -193,7 +193,6 @@ async function promptForRegistryComponents(
 
   if (!components?.length) {
     logger.warn("No components selected. Exiting.")
-    logger.info("")
     process.exit(1)
   }
 

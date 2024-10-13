@@ -25,30 +25,17 @@ const agent = process.env.https_proxy
 export async function getRegistryIndex() {
   try {
     const [result] = await fetchRegistry(["index.json"])
-
     return registryIndexSchema.parse(result)
   } catch (error) {
-    logger.error("\n")
     handleError(error)
   }
 }
 
-// export async function getRegistryStyles() {
-//   try {
-//     const [result] = await fetchRegistry(["styles/index.json"])
-
-//     return stylesSchema.parse(result)
-//   } catch (error) {
-//     logger.error("\n")
-//     handleError(error)
-//     return []
-//   }
-// }
-
-export async function getRegistryItem(name: string, style: string) {
+export async function getRegistryItem(name: string) {
   try {
+    logger.info(`Fetching registry item ${name}...`)
     const [result] = await fetchRegistry([
-      isUrl(name) ? name : `styles/${style}/${name}.json`,
+      isUrl(name) ? name : `/registry/${name}.json`,
     ])
 
     return registryItemSchema.parse(result)
@@ -121,12 +108,9 @@ export async function resolveTree(
   )
 }
 
-export async function fetchTree(
-  style: string,
-  tree: z.infer<typeof registryIndexSchema>
-) {
+export async function fetchTree(tree: z.infer<typeof registryIndexSchema>) {
   try {
-    const paths = tree.map((item) => `styles/${style}/${item.name}.json`)
+    const paths = tree.map((item) => `${item.name}.json`)
     const result = await fetchRegistry(paths)
     return registryIndexSchema.parse(result)
   } catch (error) {
@@ -207,8 +191,7 @@ async function fetchRegistry(paths: string[]) {
             `Failed to fetch from ${highlighter.info(url)}.\n${message}`
           )
         }
-
-        return response.json()
+        return response.json() as Promise<z.infer<typeof registryItemSchema>>
       })
     )
 
@@ -263,7 +246,6 @@ export async function registryResolveItemsTree(
     if (!index) {
       return null
     }
-
     // If we're resolving the index, we want it to go first.
     if (names.includes("index")) {
       names.unshift("index")
@@ -277,7 +259,6 @@ export async function registryResolveItemsTree(
       )
       registryDependencies.push(...itemRegistryDependencies)
     }
-
     const uniqueRegistryDependencies = Array.from(new Set(registryDependencies))
     let result = await fetchRegistry(uniqueRegistryDependencies)
     const payload = z.array(registryItemSchema).parse(result)
@@ -342,7 +323,9 @@ async function resolveRegistryDependencies(
   const payload: string[] = []
 
   async function resolveDependencies(itemUrl: string) {
-    const url = getRegistryUrl(isUrl(itemUrl) ? itemUrl : `/${itemUrl}.json`)
+    const url = getRegistryUrl(
+      isUrl(itemUrl) ? itemUrl : `registry/${itemUrl}.json` // CHECK THIS LINE
+    )
 
     if (visited.has(url)) {
       return

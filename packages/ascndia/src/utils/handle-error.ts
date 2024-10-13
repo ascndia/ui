@@ -15,7 +15,8 @@ export function handleError(error: unknown) {
   }
 
   if (error instanceof z.ZodError) {
-    logger.error("Validation failed:")
+    logger.error("Zod validation failed:")
+    logger.error(error)
     for (const [key, value] of Object.entries(error.flatten().fieldErrors)) {
       logger.error(`- ${highlighter.info(key)}: ${value}`)
     }
