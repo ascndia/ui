@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 
+import { Button } from "@/components/ui/button"
 import { Announcement } from "@/components/announcement"
 import {
   PageActions,
@@ -7,7 +8,6 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header"
-import { Button } from "@/registry/ui/button"
 
 export const metadata: Metadata = {
   title: "Building Blocks.",

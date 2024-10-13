@@ -7,9 +7,13 @@ import { THEMES, Theme } from "@/lib/themes"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useThemesConfig } from "@/hooks/use-themes-config"
-import { Skeleton } from "@/registry/ui/skeleton"
-import { ToggleGroup, ToggleGroupItem } from "@/registry/ui/toggle-group"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
+import { Skeleton } from "@/components/ui/skeleton"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export function ThemesSwitcher({
   themes = THEMES,

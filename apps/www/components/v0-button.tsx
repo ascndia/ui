@@ -7,9 +7,13 @@ import { useFormStatus } from "react-dom"
 import { toast } from "sonner"
 
 import { cn } from "@/lib/utils"
+import { Button, ButtonProps } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 import { Block } from "@/registry/schema"
-import { Button, ButtonProps } from "@/registry/ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 type Size = "default" | "icon"
 

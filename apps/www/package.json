@@ -68,6 +68,7 @@
     "lodash.template": "^4.5.0",
     "lucide-react": "0.359.0",
     "markdown-wasm": "^1.2.0",
+    "mini-svg-data-uri": "^1.4.4",
     "next": "14.3.0-canary.43",
     "next-contentlayer2": "^0.4.6",
     "next-themes": "^0.2.1",
@@ -81,7 +82,8 @@
     "sharp": "^0.31.3",
     "sonner": "^1.2.3",
     "swr": "2.2.6-beta.3",
-    "tailwind-merge": "^1.12.0",
+    "tailwind-merge": "^1.13.2",
+    "tailwindcss-animate": "^1.0.7",
     "ts-morph": "^22.0.0",
     "vaul": "0.9.0",
     "zod": "^3.21.4"

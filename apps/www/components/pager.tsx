@@ -5,7 +5,7 @@ import { NavItem, NavItemWithChildren } from "types/nav"
 
 import { docsConfig } from "@/config/docs"
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/registry/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 
 interface DocsPagerProps {
   doc: Doc

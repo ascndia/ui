@@ -10,6 +10,15 @@ import { NpmCommands } from "types/unist"
 import { Event } from "@/lib/events"
 import { cn } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Callout } from "@/components/callout"
 import { CodeBlockWrapper } from "@/components/code-block-wrapper"
 import { ComponentExample } from "@/components/component-example"
@@ -19,15 +28,8 @@ import { CopyButton, CopyNpmCommandButton } from "@/components/copy-button"
 import { FrameworkDocs } from "@/components/framework-docs"
 import { StyleWrapper } from "@/components/style-wrapper"
 import { Style } from "@/registry/registry-styles"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/registry/ui/accordion"
-import { Alert, AlertDescription, AlertTitle } from "@/registry/ui/alert"
-import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+
+import { SectionPreview } from "./section-preview"
 
 const components = {
   Accordion,
@@ -225,6 +227,7 @@ const components = {
   ComponentPreview,
   ComponentExample,
   ComponentSource,
+  SectionPreview,
   AspectRatio,
   CodeBlockWrapper: ({ ...props }) => (
     <CodeBlockWrapper className="rounded-md border" {...props} />

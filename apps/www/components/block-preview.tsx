@@ -6,15 +6,15 @@ import { ImperativePanelHandle } from "react-resizable-panels"
 import { cn } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
 import { useLiftMode } from "@/hooks/use-lift-mode"
-import { BlockToolbar } from "@/components/block-toolbar"
-import { Icons } from "@/components/icons"
-import { Block } from "@/registry/schema"
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/registry/ui/resizable"
-import { Tabs, TabsContent } from "@/registry/ui/tabs"
+} from "@/components/ui/resizable"
+import { Tabs, TabsContent } from "@/components/ui/tabs"
+import { BlockToolbar } from "@/components/block-toolbar"
+import { Icons } from "@/components/icons"
+import { Block } from "@/registry/schema"
 
 export function BlockPreview({
   block,

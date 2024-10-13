@@ -255,6 +255,9 @@ importers:
       markdown-wasm:
         specifier: ^1.2.0
         version: 1.2.0
+      mini-svg-data-uri:
+        specifier: ^1.4.4
+        version: 1.4.4
       next:
         specifier: 14.3.0-canary.43
         version: 14.3.0-canary.43(@babel/core@7.22.1)(@opentelemetry/api@1.8.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -295,8 +298,11 @@ importers:
         specifier: 2.2.6-beta.3
         version: 2.2.6-beta.3(react@18.2.0)
       tailwind-merge:
-        specifier: ^1.12.0
+        specifier: ^1.13.2
         version: 1.13.2
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.3.7(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.5.3)))
       ts-morph:
         specifier: ^22.0.0
         version: 22.0.0
@@ -5388,6 +5394,10 @@ packages:
   min-indent@1.0.1:
     resolution: {integrity: sha512-I9jwMn07Sy/IwOj3zVkVik2JTvgpaykDZEigL6Rx6N9LbMywwUSMtxET+7lVoDLLd3O3IXwJwvuuns8UB/HeAg==}
     engines: {node: '>=4'}
+
+  mini-svg-data-uri@1.4.4:
+    resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
+    hasBin: true
 
   minimatch@10.0.1:
     resolution: {integrity: sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==}
@@ -12896,6 +12906,8 @@ snapshots:
 
   min-indent@1.0.1: {}
 
+  mini-svg-data-uri@1.4.4: {}
+
   minimatch@10.0.1:
     dependencies:
       brace-expansion: 2.0.1
@@ -14256,6 +14268,10 @@ snapshots:
   tailwindcss-animate@1.0.6(tailwindcss@3.3.7(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.5.3))):
     dependencies:
       tailwindcss: 3.3.7(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.5.3))
+
+  tailwindcss-animate@1.0.7(tailwindcss@3.3.7(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.5.3))):
+    dependencies:
+      tailwindcss: 3.3.7(ts-node@10.9.2(@types/node@17.0.45)(typescript@5.5.3))
 
   tailwindcss-animate@1.0.7(tailwindcss@3.3.7(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.5.3))):
     dependencies:

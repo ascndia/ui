@@ -3,13 +3,13 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { useThemesConfig } from "@/hooks/use-themes-config"
+import { Button } from "@/components/ui/button"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BlockCopyButton } from "@/components/block-copy-button"
 import { V0Button } from "@/components/v0-button"
 import { Block } from "@/registry/schema"
-import { Button } from "@/registry/ui/button"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/registry/ui/drawer"
-import { Sheet, SheetContent, SheetTrigger } from "@/registry/ui/sheet"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export function ChartCodeViewer({
   chart,

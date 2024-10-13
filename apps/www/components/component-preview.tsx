@@ -4,11 +4,11 @@ import * as React from "react"
 import { Index } from "@/__registry__"
 
 import { cn } from "@/lib/utils"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CopyButton } from "@/components/copy-button"
 import { Icons } from "@/components/icons"
 import { ThemeWrapper } from "@/components/theme-wrapper"
 import { V0Button } from "@/components/v0-button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string
@@ -66,7 +66,10 @@ export function ComponentPreview({
 
   return (
     <div
-      className={cn("group relative my-4 flex flex-col space-y-2", className)}
+      className={cn(
+        "group relative my-4 flex flex-col overflow-hidden space-y-2",
+        className
+      )}
       {...props}
     >
       <Tabs defaultValue="preview" className="relative mr-auto w-full">
@@ -91,17 +94,17 @@ export function ComponentPreview({
         <TabsContent value="preview" className="relative rounded-md border">
           <div className="flex items-center justify-between p-4">
             <div className="flex items-center gap-2">
-              <V0Button
+              {/* <V0Button
                 block={{
                   code: codeString,
                   name,
                   description,
                 }}
-              />
+              /> */}
               <CopyButton
                 value={codeString}
                 variant="outline"
-                className="h-7 w-7 text-foreground opacity-100 hover:bg-muted hover:text-foreground [&_svg]:h-3.5 [&_svg]:w-3.5"
+                className="h-8 w-8 text-foreground opacity-100 hover:bg-muted hover:text-foreground [&_svg]:h-3.5 [&_svg]:w-3.5"
               />
             </div>
           </div>

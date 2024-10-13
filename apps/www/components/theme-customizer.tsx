@@ -14,10 +14,7 @@ import { useTheme } from "next-themes"
 
 import { cn } from "@/lib/utils"
 import { useConfig } from "@/hooks/use-config"
-import { copyToClipboardWithMeta } from "@/components/copy-button"
-import { ThemeWrapper } from "@/components/theme-wrapper"
-import { BaseColor, baseColors } from "@/registry/registry-base-colors"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
@@ -25,12 +22,24 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/ui/dialog"
-import { Drawer, DrawerContent, DrawerTrigger } from "@/registry/ui/drawer"
-import { Label } from "@/registry/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-import { Skeleton } from "@/registry/ui/skeleton"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
+} from "@/components/ui/dialog"
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer"
+import { Label } from "@/components/ui/label"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import { Skeleton } from "@/components/ui/skeleton"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import { copyToClipboardWithMeta } from "@/components/copy-button"
+import { ThemeWrapper } from "@/components/theme-wrapper"
+
+// import { BaseColor, baseColors } from "@/registry/registry-base-colors"
 
 import "@/styles/mdx.css"
 

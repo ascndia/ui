@@ -1,10 +1,10 @@
 "use client"
 
 import { cn } from "@/lib/utils"
+import { Separator } from "@/components/ui/separator"
 import { BlockCopyButton } from "@/components/block-copy-button"
 import { ChartCodeViewer } from "@/components/chart-code-viewer"
 import { Block } from "@/registry/schema"
-import { Separator } from "@/registry/ui/separator"
 
 import "@/styles/mdx.css"
 import {

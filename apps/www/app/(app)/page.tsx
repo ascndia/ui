@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
+import { Button } from "@/components/ui/button"
 import { Announcement } from "@/components/announcement"
 import { ExamplesNav } from "@/components/examples-nav"
 import {
@@ -9,8 +10,6 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "@/components/page-header"
-import { Button } from "@/registry/ui/button"
-import MailPage from "@/app/(app)/examples/mail/page"
 
 export default function IndexPage() {
   return (
@@ -37,13 +36,6 @@ export default function IndexPage() {
           </Button>
         </PageActions>
       </PageHeader>
-      <ExamplesNav className="[&>a:first-child]:text-primary" />
-      <section className="overflow-hidden rounded-lg border bg-background shadow-md md:hidden md:shadow-xl"></section>
-      <section className="hidden md:block">
-        <div className="overflow-hidden rounded-lg border bg-background shadow">
-          <MailPage />
-        </div>
-      </section>
     </div>
   )
 }

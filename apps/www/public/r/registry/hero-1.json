@@ -1,0 +1,15 @@
+{
+  "name": "hero-1",
+  "type": "registry:section",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "section/hero-1.tsx",
+      "content": "\"use client\"\n\nimport React from \"react\"\nimport { motion, useMotionTemplate, useMotionValue } from \"framer-motion\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst HeroHighlight = ({\n  children,\n  className,\n  containerClassName,\n}: {\n  children: React.ReactNode\n  className?: string\n  containerClassName?: string\n}) => {\n  let mouseX = useMotionValue(0)\n  let mouseY = useMotionValue(0)\n\n  function handleMouseMove({\n    currentTarget,\n    clientX,\n    clientY,\n  }: React.MouseEvent<HTMLDivElement>) {\n    if (!currentTarget) return\n    let { left, top } = currentTarget.getBoundingClientRect()\n\n    mouseX.set(clientX - left)\n    mouseY.set(clientY - top)\n  }\n  return (\n    <div\n      className={cn(\n        \"relative h-[40rem] flex items-center bg-white dark:bg-black justify-center w-full group\",\n        containerClassName\n      )}\n      onMouseMove={handleMouseMove}\n    >\n      <div className=\"absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800  pointer-events-none\" />\n      <motion.div\n        className=\"pointer-events-none bg-dot-thick-indigo-500 dark:bg-dot-thick-indigo-500   absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100\"\n        style={{\n          WebkitMaskImage: useMotionTemplate`\n            radial-gradient(\n              200px circle at ${mouseX}px ${mouseY}px,\n              black 0%,\n              transparent 100%\n            )\n          `,\n          maskImage: useMotionTemplate`\n            radial-gradient(\n              200px circle at ${mouseX}px ${mouseY}px,\n              black 0%,\n              transparent 100%\n            )\n          `,\n        }}\n      />\n\n      <div className={cn(\"relative z-20\", className)}>{children}</div>\n    </div>\n  )\n}\n\nconst Highlight = ({\n  children,\n  className,\n}: {\n  children: React.ReactNode\n  className?: string\n}) => {\n  return (\n    <motion.span\n      initial={{\n        backgroundSize: \"0% 100%\",\n      }}\n      animate={{\n        backgroundSize: \"100% 100%\",\n      }}\n      transition={{\n        duration: 2,\n        ease: \"linear\",\n        delay: 0.5,\n      }}\n      style={{\n        backgroundRepeat: \"no-repeat\",\n        backgroundPosition: \"left center\",\n        display: \"inline\",\n      }}\n      className={cn(\n        `relative inline-block pb-1   px-1 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500`,\n        className\n      )}\n    >\n      {children}\n    </motion.span>\n  )\n}\nHeroHighlight.displayName = \"HeroHighlight\"\nHighlight.displayName = \"Highlight\"\nexport { HeroHighlight, Highlight }\n",
+      "type": "registry:section",
+      "target": ""
+    }
+  ]
+}

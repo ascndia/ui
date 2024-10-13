@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "ascndia/ui",
+  name: "ascndia",
   url: "https://ui.ascndia.com",
   ogImage: "https://ui.ascndia.com/og.jpg",
   description:

@@ -3,6 +3,7 @@ import { allDocs } from "contentlayer/generated"
 
 import "@/styles/mdx.css"
 import type { Metadata } from "next"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { ChevronRightIcon, ExternalLinkIcon } from "@radix-ui/react-icons"
 import Balancer from "react-wrap-balancer"
@@ -10,12 +11,9 @@ import Balancer from "react-wrap-balancer"
 import { siteConfig } from "@/config/site"
 import { getTableOfContents } from "@/lib/toc"
 import { absoluteUrl, cn } from "@/lib/utils"
+import { badgeVariants } from "@/components/ui/badge"
 import { Mdx } from "@/components/mdx-components"
-import { OpenInV0Cta } from "@/components/open-in-v0-cta"
 import { DocsPager } from "@/components/pager"
-import { DashboardTableOfContents } from "@/components/toc"
-import { badgeVariants } from "@/registry/ui/badge"
-import { ScrollArea } from "@/registry/ui/scroll-area"
 
 interface DocPageProps {
   params: {
@@ -88,7 +86,7 @@ export default async function DocPage({ params }: DocPageProps) {
   const toc = await getTableOfContents(doc.body.raw)
 
   return (
-    <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
+    <main className="relative py-6 ">
       <div className="mx-auto w-full min-w-0">
         <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
           <div className="truncate">Docs</div>
@@ -135,14 +133,6 @@ export default async function DocPage({ params }: DocPageProps) {
           <Mdx code={doc.body.code} />
         </div>
         <DocsPager doc={doc} />
-      </div>
-      <div className="hidden text-sm xl:block">
-        <div className="sticky top-16 -mt-10 h-[calc(100vh-3.5rem)] pt-4">
-          <ScrollArea className="h-full pb-10">
-            {doc.toc && <DashboardTableOfContents toc={toc} />}
-            <OpenInV0Cta className="mt-6 max-w-[80%]" />
-          </ScrollArea>
-        </div>
       </div>
     </main>
   )
