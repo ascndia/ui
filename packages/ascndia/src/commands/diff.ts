@@ -148,7 +148,7 @@ async function diffComponent(
   component: z.infer<typeof registryIndexSchema>[number],
   config: Config
 ) {
-  const payload = await fetchTree(config.style, [component])
+  const payload = await fetchTree([component])
   const baseColor = await getRegistryBaseColor(config.tailwind.baseColor)
 
   if (!payload) {

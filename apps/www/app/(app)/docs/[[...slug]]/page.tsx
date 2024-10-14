@@ -83,12 +83,10 @@ export default async function DocPage({ params }: DocPageProps) {
     notFound()
   }
 
-  const toc = await getTableOfContents(doc.body.raw)
-
   return (
     <main className="relative py-6 ">
       <div className="mx-auto w-full min-w-0">
-        <div className="mb-4 flex items-center space-x-1 text-sm leading-none text-muted-foreground">
+        <div className="text-muted-foreground mb-4 flex items-center space-x-1 text-sm leading-none">
           <div className="truncate">Docs</div>
           <ChevronRightIcon className="h-3.5 w-3.5" />
           <div className="text-foreground">{doc.title}</div>
@@ -98,7 +96,7 @@ export default async function DocPage({ params }: DocPageProps) {
             {doc.title}
           </h1>
           {doc.description && (
-            <p className="text-base text-muted-foreground">
+            <p className="text-muted-foreground text-base">
               <Balancer>{doc.description}</Balancer>
             </p>
           )}

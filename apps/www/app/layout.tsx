@@ -8,7 +8,6 @@ import { Toaster as DefaultToaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/providers"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeSwitcher } from "@/components/theme-switcher"
 
 import "../styles/globals.css"
 
@@ -82,7 +81,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "bg-background min-h-screen font-sans antialiased",
             fontSans.variable
           )}
         >
@@ -93,12 +92,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
             disableTransitionOnChange
           >
             <div vaul-drawer-wrapper="">
-              <div className="relative flex min-h-screen flex-col bg-background">
+              <div className="bg-background relative flex min-h-screen flex-col">
                 {children}
               </div>
             </div>
             <TailwindIndicator />
-            <ThemeSwitcher />
             <Analytics />
             <DefaultToaster />
           </ThemeProvider>

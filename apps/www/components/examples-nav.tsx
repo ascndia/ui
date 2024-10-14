@@ -64,10 +64,10 @@ export function ExamplesNav({ className, ...props }: ExamplesNavProps) {
               href={example.href}
               key={example.href}
               className={cn(
-                "flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors hover:text-primary",
+                "hover:text-primary flex h-7 items-center justify-center rounded-full px-4 text-center text-sm transition-colors",
                 pathname?.startsWith(example.href) ||
                   (index === 0 && pathname === "/")
-                  ? "bg-muted font-medium text-primary"
+                  ? "bg-muted text-primary font-medium"
                   : "text-muted-foreground"
               )}
             >

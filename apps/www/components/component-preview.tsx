@@ -7,8 +7,6 @@ import { cn } from "@/lib/utils"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CopyButton } from "@/components/copy-button"
 import { Icons } from "@/components/icons"
-import { ThemeWrapper } from "@/components/theme-wrapper"
-import { V0Button } from "@/components/v0-button"
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string
@@ -40,9 +38,9 @@ export function ComponentPreview({
 
     if (!Component) {
       return (
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground text-sm">
           Component{" "}
-          <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">
+          <code className="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">
             {name}
           </code>{" "}
           not found in registry.
@@ -67,7 +65,7 @@ export function ComponentPreview({
   return (
     <div
       className={cn(
-        "group relative my-4 flex flex-col overflow-hidden space-y-2",
+        "group relative my-4 flex flex-col space-y-2 overflow-hidden",
         className
       )}
       {...props}
@@ -78,13 +76,13 @@ export function ComponentPreview({
             <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
               <TabsTrigger
                 value="preview"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
               >
                 Preview
               </TabsTrigger>
               <TabsTrigger
                 value="code"
-                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="text-muted-foreground data-[state=active]:border-b-primary data-[state=active]:text-foreground relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold shadow-none transition-none data-[state=active]:shadow-none"
               >
                 Code
               </TabsTrigger>
@@ -104,33 +102,31 @@ export function ComponentPreview({
               <CopyButton
                 value={codeString}
                 variant="outline"
-                className="h-8 w-8 text-foreground opacity-100 hover:bg-muted hover:text-foreground [&_svg]:h-3.5 [&_svg]:w-3.5"
+                className="text-foreground hover:bg-muted hover:text-foreground h-8 w-8 opacity-100 [&_svg]:h-3.5 [&_svg]:w-3.5"
               />
             </div>
           </div>
-          <ThemeWrapper defaultTheme="zinc">
-            <div
-              className={cn(
-                "preview flex min-h-[350px] w-full justify-center p-10",
-                {
-                  "items-center": align === "center",
-                  "items-start": align === "start",
-                  "items-end": align === "end",
-                }
-              )}
+          <div
+            className={cn(
+              "preview flex min-h-[350px] w-full justify-center p-10",
+              {
+                "items-center": align === "center",
+                "items-start": align === "start",
+                "items-end": align === "end",
+              }
+            )}
+          >
+            <React.Suspense
+              fallback={
+                <div className="text-muted-foreground flex w-full items-center justify-center text-sm">
+                  <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+                  Loading...
+                </div>
+              }
             >
-              <React.Suspense
-                fallback={
-                  <div className="flex w-full items-center justify-center text-sm text-muted-foreground">
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                    Loading...
-                  </div>
-                }
-              >
-                {Preview}
-              </React.Suspense>
-            </div>
-          </ThemeWrapper>
+              {Preview}
+            </React.Suspense>
+          </div>
         </TabsContent>
         <TabsContent value="code">
           <div className="flex flex-col space-y-4">
