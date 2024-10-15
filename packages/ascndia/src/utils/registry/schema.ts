@@ -11,6 +11,7 @@ export const registryItemTypeSchema = z.enum([
   "registry:hook",
   "registry:theme",
   "registry:page",
+  "registry:section",
 ])
 
 export const registryItemFileSchema = z.object({
@@ -30,11 +31,6 @@ export const registryItemTailwindSchema = z.object({
     .optional(),
 })
 
-export const registryItemCssVarsSchema = z.object({
-  light: z.record(z.string(), z.string()).optional(),
-  dark: z.record(z.string(), z.string()).optional(),
-})
-
 export const registryItemSchema = z.object({
   name: z.string(),
   type: registryItemTypeSchema,
@@ -44,7 +40,6 @@ export const registryItemSchema = z.object({
   registryDependencies: z.array(z.string()).optional(),
   files: z.array(registryItemFileSchema).optional(),
   tailwind: registryItemTailwindSchema.optional(),
-  cssVars: registryItemCssVarsSchema.optional(),
   meta: z.record(z.string(), z.any()).optional(),
   docs: z.string().optional(),
 })
@@ -57,24 +52,10 @@ export const registryIndexSchema = z.array(
   })
 )
 
-export const registryBaseColorSchema = z.object({
-  inlineColors: z.object({
-    light: z.record(z.string(), z.string()),
-    dark: z.record(z.string(), z.string()),
-  }),
-  cssVars: z.object({
-    light: z.record(z.string(), z.string()),
-    dark: z.record(z.string(), z.string()),
-  }),
-  inlineColorsTemplate: z.string(),
-  cssVarsTemplate: z.string(),
-})
-
 export const registryResolvedItemsTreeSchema = registryItemSchema.pick({
   dependencies: true,
   devDependencies: true,
   files: true,
   tailwind: true,
-  cssVars: true,
   docs: true,
 })

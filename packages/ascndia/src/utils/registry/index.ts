@@ -4,13 +4,11 @@ import { handleError } from "@/src/utils/handle-error"
 import { highlighter } from "@/src/utils/highlighter"
 import { logger } from "@/src/utils/logger"
 import {
-  registryBaseColorSchema,
   registryIndexSchema,
   registryItemFileSchema,
   registryItemSchema,
   registryResolvedItemsTreeSchema,
 } from "@/src/utils/registry/schema"
-import { buildTailwindThemeColorsFromCssVars } from "@/src/utils/updaters/update-tailwind-config"
 import deepmerge from "deepmerge"
 import { HttpsProxyAgent } from "https-proxy-agent"
 import fetch from "node-fetch"
@@ -43,41 +41,6 @@ export async function getRegistryItem(name: string) {
     logger.break()
     handleError(error)
     return null
-  }
-}
-
-export async function getRegistryBaseColors() {
-  return [
-    {
-      name: "neutral",
-      label: "Neutral",
-    },
-    {
-      name: "gray",
-      label: "Gray",
-    },
-    {
-      name: "zinc",
-      label: "Zinc",
-    },
-    {
-      name: "stone",
-      label: "Stone",
-    },
-    {
-      name: "slate",
-      label: "Slate",
-    },
-  ]
-}
-
-export async function getRegistryBaseColor(baseColor: string) {
-  try {
-    const [result] = await fetchRegistry([`colors/${baseColor}.json`])
-
-    return registryBaseColorSchema.parse(result)
-  } catch (error) {
-    handleError(error)
   }
 }
 
@@ -228,6 +191,9 @@ export function getRegistryItemFileTargetPath(
     return config.resolvedPaths.hooks
   }
 
+  if (file.type === "registry:section") {
+    return config.resolvedPaths.section
+  }
   // TODO: we put this in components for now.
   // We should move this to pages as per framework.
   if (file.type === "registry:page") {
@@ -267,27 +233,9 @@ export async function registryResolveItemsTree(
       return null
     }
 
-    // If we're resolving the index, we want to fetch
-    // the theme item if a base color is provided.
-    // We do this for index only.
-    // Other components will ship with their theme tokens.
-    if (names.includes("index")) {
-      if (config.tailwind.baseColor) {
-        const theme = await registryGetTheme(config.tailwind.baseColor, config)
-        if (theme) {
-          payload.unshift(theme)
-        }
-      }
-    }
-
     let tailwind = {}
     payload.forEach((item) => {
       tailwind = deepmerge(tailwind, item.tailwind ?? {})
-    })
-
-    let cssVars = {}
-    payload.forEach((item) => {
-      cssVars = deepmerge(cssVars, item.cssVars ?? {})
     })
 
     let docs = ""
@@ -306,7 +254,6 @@ export async function registryResolveItemsTree(
       ),
       files: deepmerge.all(payload.map((item) => item.files ?? [])),
       tailwind,
-      cssVars,
       docs,
     })
   } catch (error) {
@@ -353,58 +300,6 @@ async function resolveRegistryDependencies(
 
   await resolveDependencies(url)
   return Array.from(new Set(payload))
-}
-
-export async function registryGetTheme(name: string, config: Config) {
-  const baseColor = await getRegistryBaseColor(name)
-  if (!baseColor) {
-    return null
-  }
-
-  // TODO: Move this to the registry i.e registry:theme.
-  const theme = {
-    name,
-    type: "registry:theme",
-    tailwind: {
-      config: {
-        theme: {
-          extend: {
-            borderRadius: {
-              lg: "var(--radius)",
-              md: "calc(var(--radius) - 2px)",
-              sm: "calc(var(--radius) - 4px)",
-            },
-            colors: {},
-          },
-        },
-      },
-    },
-    cssVars: {
-      light: {
-        radius: "0.5rem",
-      },
-      dark: {},
-    },
-  } satisfies z.infer<typeof registryItemSchema>
-
-  if (config.tailwind.cssVariables) {
-    theme.tailwind.config.theme.extend.colors = {
-      ...theme.tailwind.config.theme.extend.colors,
-      ...buildTailwindThemeColorsFromCssVars(baseColor.cssVars.dark),
-    }
-    theme.cssVars = {
-      light: {
-        ...baseColor.cssVars.light,
-        ...theme.cssVars.light,
-      },
-      dark: {
-        ...baseColor.cssVars.dark,
-        ...theme.cssVars.dark,
-      },
-    }
-  }
-
-  return theme
 }
 
 function getRegistryUrl(path: string) {

@@ -25,8 +25,6 @@ export const rawConfigSchema = z
     tailwind: z.object({
       config: z.string(),
       css: z.string(),
-      baseColor: z.string(),
-      cssVariables: z.boolean().default(true),
       prefix: z.string().default("").optional(),
     }),
     aliases: z.object({
@@ -35,6 +33,7 @@ export const rawConfigSchema = z
       ui: z.string().optional(),
       lib: z.string().optional(),
       hooks: z.string().optional(),
+      section: z.string().optional(),
     }),
   })
   .strict()
@@ -51,6 +50,7 @@ export const configSchema = rawConfigSchema.extend({
     lib: z.string(),
     hooks: z.string(),
     ui: z.string(),
+    section: z.string(),
   }),
 })
 
@@ -92,6 +92,13 @@ export async function resolveConfigPaths(cwd: string, config: RawConfig) {
             (await resolveImport(config.aliases["components"], tsConfig)) ??
               cwd,
             "ui"
+          ),
+      section: config.aliases["section"]
+        ? await resolveImport(config.aliases["section"], tsConfig)
+        : path.resolve(
+            (await resolveImport(config.aliases["components"], tsConfig)) ??
+              cwd,
+            "section"
           ),
       // TODO: Make this configurable.
       // For now, we assume the lib and hooks directories are one level up from the components directory.

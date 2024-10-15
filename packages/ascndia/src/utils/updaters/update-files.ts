@@ -4,17 +4,12 @@ import { Config } from "@/src/utils/get-config"
 import { getProjectInfo } from "@/src/utils/get-project-info"
 import { highlighter } from "@/src/utils/highlighter"
 import { logger } from "@/src/utils/logger"
-import {
-  getRegistryBaseColor,
-  getRegistryItemFileTargetPath,
-} from "@/src/utils/registry"
+import { getRegistryItemFileTargetPath } from "@/src/utils/registry"
 import { RegistryItem } from "@/src/utils/registry/schema"
 import { spinner } from "@/src/utils/spinner"
 import { transform } from "@/src/utils/transformers"
-import { transformCssVars } from "@/src/utils/transformers/transform-css-vars"
 import { transformImport } from "@/src/utils/transformers/transform-import"
 import { transformRsc } from "@/src/utils/transformers/transform-rsc"
-import { transformTwPrefixes } from "@/src/utils/transformers/transform-tw-prefix"
 import prompts from "prompts"
 
 export function resolveTargetDir(
@@ -52,9 +47,8 @@ export async function updateFiles(
     silent: options.silent,
   })?.start()
 
-  const [projectInfo, baseColor] = await Promise.all([
+  const [projectInfo] = await Promise.all([
     getProjectInfo(config.resolvedPaths.cwd),
-    getRegistryBaseColor(config.tailwind.baseColor),
   ])
 
   const filesCreated = []
@@ -65,7 +59,6 @@ export async function updateFiles(
     if (!file.content) {
       continue
     }
-
     let targetDir = getRegistryItemFileTargetPath(file, config)
     const fileName = basename(file.path)
     let filePath = path.join(targetDir, fileName)
@@ -111,10 +104,9 @@ export async function updateFiles(
         filename: file.path,
         raw: file.content,
         config,
-        baseColor,
         transformJsx: !config.tsx,
       },
-      [transformImport, transformRsc, transformCssVars, transformTwPrefixes]
+      [transformImport, transformRsc]
     )
 
     await fs.writeFile(filePath, content, "utf-8")

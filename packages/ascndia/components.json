@@ -4,9 +4,7 @@
   "tsx": true,
   "tailwind": {
     "config": "tailwind.config.ts",
-    "css": "test/fixtures/next/app/globals.css",
-    "baseColor": "zinc",
-    "cssVariables": true,
+    "css": "test/fixtures/next-app-js/app/globals.css",
     "prefix": ""
   },
   "aliases": {
@@ -14,6 +12,7 @@
     "utils": "@/lib/utils",
     "ui": "@/components/ui",
     "lib": "@/lib",
-    "hooks": "@/hooks"
+    "hooks": "@/hooks",
+    "section": "@/components/section"
   }
 }

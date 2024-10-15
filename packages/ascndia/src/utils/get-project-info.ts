@@ -227,9 +227,7 @@ export async function getProjectConfig(
     tsx: projectInfo.isTsx,
     tailwind: {
       config: projectInfo.tailwindConfigFile,
-      baseColor: "zinc",
       css: projectInfo.tailwindCssFile,
-      cssVariables: true,
       prefix: "",
     },
     aliases: {
@@ -237,6 +235,7 @@ export async function getProjectConfig(
       ui: `${projectInfo.aliasPrefix}/components/ui`,
       hooks: `${projectInfo.aliasPrefix}/hooks`,
       lib: `${projectInfo.aliasPrefix}/lib`,
+      section: `${projectInfo.aliasPrefix}/components/section`,
       utils: `${projectInfo.aliasPrefix}/lib/utils`,
     },
   }

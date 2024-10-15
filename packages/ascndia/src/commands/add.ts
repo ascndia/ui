@@ -54,28 +54,6 @@ export const add = new Command()
         ...opts,
       })
 
-      // Confirm if user is installing themes.
-      // For now, we assume a theme is prefixed with "theme-".
-      const isTheme = options.components?.some((component) =>
-        component.includes("theme-")
-      )
-      if (!options.yes && isTheme) {
-        logger.break()
-        const { confirm } = await prompts({
-          type: "confirm",
-          name: "confirm",
-          message: highlighter.warn(
-            "You are about to install a new theme. \nExisting CSS variables will be overwritten. Continue?"
-          ),
-        })
-        if (!confirm) {
-          logger.break()
-          logger.log("Theme installation cancelled.")
-          logger.break()
-          process.exit(1)
-        }
-      }
-
       if (!options.components?.length) {
         options.components = await promptForRegistryComponents(options)
       }

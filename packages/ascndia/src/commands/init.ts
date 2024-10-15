@@ -18,7 +18,6 @@ import { getProjectConfig, getProjectInfo } from "@/src/utils/get-project-info"
 import { handleError } from "@/src/utils/handle-error"
 import { highlighter } from "@/src/utils/highlighter"
 import { logger } from "@/src/utils/logger"
-import { getRegistryBaseColors } from "@/src/utils/registry"
 import { spinner } from "@/src/utils/spinner"
 import { updateTailwindContent } from "@/src/utils/updaters/update-tailwind-content"
 import { Command } from "commander"
@@ -154,9 +153,6 @@ export async function runInit(
 }
 
 async function promptForConfig(defaultConfig: Config | null = null) {
-  const baseColors = await getRegistryBaseColors()
-
-  logger.info("")
   const options = await prompts([
     {
       type: "toggle",
@@ -169,31 +165,10 @@ async function promptForConfig(defaultConfig: Config | null = null) {
       inactive: "no",
     },
     {
-      type: "select",
-      name: "tailwindBaseColor",
-      message: `Which color would you like to use as the ${highlighter.info(
-        "base color"
-      )}?`,
-      choices: baseColors.map((color) => ({
-        title: color.label,
-        value: color.name,
-      })),
-    },
-    {
       type: "text",
       name: "tailwindCss",
       message: `Where is your ${highlighter.info("global CSS")} file?`,
       initial: defaultConfig?.tailwind.css ?? DEFAULT_TAILWIND_CSS,
-    },
-    {
-      type: "toggle",
-      name: "tailwindCssVariables",
-      message: `Would you like to use ${highlighter.info(
-        "CSS variables"
-      )} for theming?`,
-      initial: defaultConfig?.tailwind.cssVariables ?? true,
-      active: "yes",
-      inactive: "no",
     },
     {
       type: "text",
@@ -240,8 +215,6 @@ async function promptForConfig(defaultConfig: Config | null = null) {
     tailwind: {
       config: options.tailwindConfig,
       css: options.tailwindCss,
-      baseColor: options.tailwindBaseColor,
-      cssVariables: options.tailwindCssVariables,
       prefix: options.tailwindPrefix,
     },
     rsc: options.rsc,
@@ -252,6 +225,7 @@ async function promptForConfig(defaultConfig: Config | null = null) {
       // TODO: fix this.
       lib: options.components.replace(/\/components$/, "lib"),
       hooks: options.components.replace(/\/components$/, "hooks"),
+      section: options.components.replace(/\/components$/, "section"),
     },
   })
 }
@@ -260,47 +234,9 @@ async function promptForMinimalConfig(
   defaultConfig: Config,
   opts: z.infer<typeof initOptionsSchema>
 ) {
-  let baseColor = defaultConfig.tailwind.baseColor
-  let cssVariables = defaultConfig.tailwind.cssVariables
-
-  if (!opts.defaults) {
-    const baseColors = await getRegistryBaseColors()
-
-    const options = await prompts([
-      {
-        type: "select",
-        name: "tailwindBaseColor",
-        message: `Which color would you like to use as the ${highlighter.info(
-          "base color"
-        )}?`,
-        choices: baseColors.map((color) => ({
-          title: color.label,
-          value: color.name,
-        })),
-      },
-      {
-        type: "toggle",
-        name: "tailwindCssVariables",
-        message: `Would you like to use ${highlighter.info(
-          "CSS variables"
-        )} for theming?`,
-        initial: defaultConfig?.tailwind.cssVariables,
-        active: "yes",
-        inactive: "no",
-      },
-    ])
-
-    baseColor = options.tailwindBaseColor
-    cssVariables = options.tailwindCssVariables
-  }
-
   return rawConfigSchema.parse({
     $schema: defaultConfig?.$schema,
-    tailwind: {
-      ...defaultConfig?.tailwind,
-      baseColor,
-      cssVariables,
-    },
+    tailwind: defaultConfig?.tailwind,
     rsc: defaultConfig?.rsc,
     tsx: defaultConfig?.tsx,
     aliases: defaultConfig?.aliases,
