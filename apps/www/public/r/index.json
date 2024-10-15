@@ -1,14 +1,11 @@
 [
   {
-    "name": "hero-1",
-    "type": "registry:section",
-    "dependencies": [
-      "framer-motion"
-    ],
+    "name": "browserframe",
+    "type": "registry:ui",
     "files": [
       {
-        "path": "section/hero-1.tsx",
-        "type": "registry:section"
+        "path": "ui/browserframe.tsx",
+        "type": "registry:ui"
       }
     ]
   },

@@ -93,15 +93,20 @@ export const docsConfig: DocsConfig = {
       ],
     },
     {
+      title: "Components",
+      items: [
+        {
+          title: "Browserframe",
+          href: "/docs/components/browserframe",
+          items: [],
+        },
+      ],
+    },
+    {
       title: "Sections",
       items: [
         {
-          title: "Huly.io Hero",
-          href: "/docs/section/hero-1",
-          items: [],
-        },
-        {
-          title: "Midday.ai Screen",
+          title: "Screens",
           href: "/docs/section/screen-1",
           items: [],
         },

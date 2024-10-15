@@ -1,0 +1,12 @@
+{
+  "name": "browserframe",
+  "type": "registry:ui",
+  "files": [
+    {
+      "path": "ui/browserframe.tsx",
+      "content": "import React, { PropsWithChildren } from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\ninterface Props extends PropsWithChildren {\n  tabColors?: string[]\n  className?: string\n  contentClassName?: string\n}\n\nconst BrowserFrame: React.FC<Props> = ({\n  tabColors = [\"bg-border\", \"bg-border\", \"bg-border\"],\n  children,\n  className,\n  contentClassName,\n}) => {\n  return (\n    <div\n      className={cn(\n        \"relative rounded-2xl shadow-lg p-2 pt-0 w-full h-full bg-alternative-200 border flex flex-col\",\n        className\n      )}\n    >\n      <div className=\"w-full px-2 py-3 relative flex items-center gap-1.5 lg:gap-2\">\n        {tabColors.map((color, index) => (\n          <div key={index} className={cn(\"w-2 h-2 rounded-full\", color)} />\n        ))}\n      </div>\n      <div className={cn(\"h-full w-full rounded-lg\", contentClassName)}>\n        {children}\n      </div>\n    </div>\n  )\n}\n\nexport default BrowserFrame\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}
