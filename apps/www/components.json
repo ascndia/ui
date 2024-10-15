@@ -1,9 +1,10 @@
 {
-  "$schema": "https://ui.ascndia.com/schema.json",
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
   "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "tailwind.config.cjs",
+    "config": "tailwind.config.ts",
     "css": "styles/globals.css",
     "baseColor": "neutral",
     "cssVariables": true,
@@ -14,7 +15,6 @@
     "utils": "@/lib/utils",
     "ui": "@/components/ui",
     "lib": "@/lib",
-    "hooks": "@/hooks",
-    "section": "@components/section"
+    "hooks": "@/hooks"
   }
 }

@@ -13,27 +13,11 @@ export const docsConfig: DocsConfig = {
     },
     {
       title: "Components",
-      href: "/docs/components/accordion",
+      href: "/docs/components",
     },
     {
-      title: "Blocks",
-      href: "/blocks",
-    },
-    {
-      title: "Charts",
-      href: "/charts",
-    },
-    {
-      title: "Themes",
-      href: "/themes",
-    },
-    {
-      title: "Examples",
-      href: "/examples",
-    },
-    {
-      title: "Colors",
-      href: "/colors",
+      title: "Section",
+      href: "/docs/section",
     },
   ],
   sidebarNav: [

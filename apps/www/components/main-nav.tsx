@@ -28,18 +28,6 @@ export function MainNav() {
         >
           Docs
         </Link>
-        <Link
-          href="/docs/components"
-          className={cn(
-            "hover:text-foreground/80 transition-colors",
-            pathname?.startsWith("/docs/components") &&
-              !pathname?.startsWith("/docs/component/chart")
-              ? "text-foreground"
-              : "text-foreground/60"
-          )}
-        >
-          Components
-        </Link>
       </nav>
     </div>
   )
