@@ -1,6 +1,8 @@
 # ascndia
 
-instead of using ui library and build your section/BLOCKS/pages from scratch. why not use ascndia?. instead of delivering UI components. we focus on delivering high quality BLOCKS and section so you can focus on functionality.
+instead of using ui library and build your section/BLOCKS/pages from scratch. why not use ascndia?
+
+instead of delivering UI components. we focus on delivering high quality and customizable BLOCKS and SECTIONS so you can focus on functionality.
 
 this web and functionality was built using shadcn/ui as starting point and still in growing stage.
 
