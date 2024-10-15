@@ -17,13 +17,13 @@ const BrowserFrame: React.FC<Props> = ({
   return (
     <div
       className={cn(
-        "relative rounded-2xl shadow-lg p-2 pt-0 w-full h-full bg-alternative-200 border flex flex-col",
+        "bg-alternative-200 relative flex h-full w-full flex-col rounded-2xl border p-2 pt-0 shadow-lg",
         className
       )}
     >
-      <div className="w-full px-2 py-3 relative flex items-center gap-1.5 lg:gap-2">
+      <div className="relative flex w-full items-center gap-1.5 px-2 py-3 lg:gap-2">
         {tabColors.map((color, index) => (
-          <div key={index} className={cn("w-2 h-2 rounded-full", color)} />
+          <div key={index} className={cn("h-2 w-2 rounded-full", color)} />
         ))}
       </div>
       <div className={cn("h-full w-full rounded-lg", contentClassName)}>
