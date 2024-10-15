@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "name": "hero-1",
+    "type": "registry:section",
+    "dependencies": [
+      "framer-motion"
+    ],
+    "files": [
+      {
+        "path": "section/hero-1.tsx",
+        "type": "registry:section"
+      }
+    ]
+  },
+  {
+    "name": "screen-1",
+    "type": "registry:section",
+    "dependencies": [
+      "framer-motion"
+    ],
+    "files": [
+      {
+        "path": "section/screen-1.tsx",
+        "type": "registry:section"
+      }
+    ]
+  }
+]

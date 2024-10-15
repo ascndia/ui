@@ -284,7 +284,7 @@ export const Index: Record<string, any> = {
   // Build registry/index.json.
   // ----------------------------------------------------------------------------
   const items = registry
-    .filter((item) => ["registry:ui"].includes(item.type))
+    .filter((item) => ["registry:ui", "registry:section"].includes(item.type))
     .map((item) => {
       return {
         ...item,
@@ -431,7 +431,6 @@ try {
     process.exit(1)
   }
 
-  console.log(result)
   await buildRegistry(result.data)
   await buildFiles(result.data)
   await buildStylesIndex()

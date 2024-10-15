@@ -46,9 +46,12 @@
         },
         "hooks": {
           "type": "string"
+        },
+        "section": {
+          "type": "string"
         }
       },
-      "required": ["utils", "components"]
+      "required": ["utils", "components", "section"]
     }
   },
   "required": ["tailwind", "rsc", "aliases"]
