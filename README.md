@@ -1,8 +1,11 @@
-# ascndia/ui
+# ascndia
 
-Accessible and customizable components that you can copy and paste into your apps. Free. Open Source. **Use this to build your own component library**.
+instead of using ui library and build your section/BLOCKS/pages from scratch. why not use ascndia?. instead of delivering UI components. we focus on delivering high quality BLOCKS and section so you can focus on functionality.
 
-![hero](apps/www/public/og.jpg)
+this web and functionality was built using shadcn/ui as starting point and still in growing stage.
+
+this app Will be forever open source. contributor are welcomed 😼
+
 
 ## Documentation
 
